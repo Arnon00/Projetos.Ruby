@@ -1,0 +1,81 @@
+def do_romano(roman)                                        # definindo primeira funcão - transforma Romano em Decimal
+# coleção com os valores e seus respectivos indices.
+sequencia = [ ['M', 1000], ['CM', 900], ['D', 500], ['CD', 400], ['C', 100], ['XC', 90],
+            ['L', 50], ['XL', 40], ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1] ]
+
+  r = roman.upcase                                    # Roman recebe o metodo para para padronizar maiusculas e minuculas e guarda em R
+  n = 0                                               # n recebe 0
+sequencia.each { |sym, val| n += val while r.sub!(/^#{sym}/, "") } # para cada item em Sequencia, guardado em sym e val.
+  n
+end
+
+def para_romano(decimal)                                    # definindo Segunda funcão - transforma Decimal em Romano
+# coleção com os valores e seus respectivos indices.
+  valores = [["M", 1000], ["D", 500], ["C", 100], ["L", 50], ["X", 10], ["V", 5], ["I", 1],]
+    roman = ""                                              #iniciando a variavel (String) roman
+
+    valores.each do |pair|                             # Para cada valor de "valores" em pair
+      letter = pair[0]                                 # Letter recebe valor em [0]
+      value = pair[1]                                  # Value recebe valor em [1]
+      roman += letter*(decimal / value)                # Roman recebe ele mesmo + letter * a somatoria de Decimal dividido por Value
+      decimal = decimal % value                        # Decimal recebe o resto da divisão dele mesmo com value
+    end
+    return roman                                       # Retornando o Decimal
+  end
+
+class RomanNumerals                                    # Começo da classe
+gat = ''
+    while gat != '0'
+      puts " \n------------------------\nRomanos Vs Decimais\n------------------------\n "
+      puts "Oque deseja fazer?\n\n"
+
+      puts " [1] - Para converter apartir alfabeto Romano.\n [2] - Converter para o alfabeto romano.\n [0] - Sair."
+      gat = gets.chomp
+
+      case gat
+      when '1'
+      rom_to_int = []                                      # Crinado vetor que armazena o romano
+      puts "Digite o numero (em romano) que deseja converter para Decimal"
+      rom_to_int << gets.chomp                             # guardando o valor digitado pelo ussuario
+                                                           # para cada posicão do vetor, em r, imprimimos a entrada, e o retorno do metodo (do_romano)
+      rom_to_int.each {|r| puts "O numero romano: #{r}, é equivalente ao decimal: #{do_romano(r)}"}
+      system('pause')
+        puts "deseja repetir ou sair? \n[1] - Repetir. \n[0] - Sair.\n"
+      gat = gets.chomp
+        if gat == '1'
+          system('cls')
+        else
+          gat = '0'
+          system('cls')
+          puts "Obrigado, e ate logo.\n"
+          system('pause')
+        end
+
+      when '2'
+      puts "Digite o numero (em decimal) que deseja converter para Romano"
+      j = gets.chomp                                       # Guardando em J o valor inserido pelo ussuario
+      int_to_rom = j.to_i                                  # convertendo o valor para int e guandando em (int_to_rom)
+      puts "O numero Decimal: #{int_to_rom}, é equivalente ao Romano: #{para_romano(int_to_rom)}" #mandando o valor para a funcao e imprimindo o retorno
+      system('pause')
+      puts "deseja repetir ou sair? \n[1] - Repetir. \n[0] - Sair.\n"
+      gat = gets.chomp
+      if gat == '1'
+        system('cls')
+      else
+        gat = '0'
+        system('cls')
+        puts "Obrigado, e ate logo.\n"
+        system('pause')
+      end
+
+      when '0'
+        gat = '0'
+        puts "Obrigado, e ate logo.\n"
+        system('pause')
+      else
+        "Opcão invalida"
+        gat = '1'
+        system('cls')
+      end
+    end
+end

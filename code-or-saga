@@ -1,0 +1,83 @@
+def code_or_saga(n)
+  a = []											# Inicializando o Vetor
+  i = 0												# Inicializando o I (variavel de suporte)
+  while i < n 										# Crinado o vetor com o valor passado pelo ussuario
+    a[i] = i+1										# Preenchendo o mesmo.
+    i += 1
+  end
+  a.each do |j| 										# Percorrendo o vetor e passando os valores para J
+    if j%3 == 0										# Mod da divisão do valor por 3 é igual a zero?
+      a[j-1] = code(j)       							# Se retornar 1 TRUE - Valor do vetor na posição J-1 é alterado
+    end
+    if j%5 == 0										# Mod da divisão do valor por 5 é igual a zero?
+      a[j-1] = saga(j)								# Se retornar 1 TRUE - Valor do vetor na posição J-1 é alterado
+    end
+    if (j % 5 == 0) and (j % 3 == 0)					# Verificando se, o Mod do valor que esta na posição 0 é igual 0 quando dividido por 3 e 5
+      a[j-1] = code_saga(j)							# Se retornar 2 TRUE - Quando o vetor estiver, na posição J-1 o valor e substituido
+    end
+  end
+  puts a 											# printando o vetor com os valores alterados
+end
+
+def code(n)    										# Divisivel por 3
+  n = 'code'										# setando a String na posição correspondente do vetor
+end
+
+def saga(n) 										# Divisivel por 5
+  n = 'saga'										# setando a String na posição correspondente do vetor
+end
+
+def code_saga(n) 									# Divisivel por 3&5
+  n = 'code-saga'									# setando a String na posição correspondente do vetor
+end
+
+class CodeSaga 										# iniciando a nossa classe
+
+  gat = '1'
+  while gat != '0'									# controle principal (Feito com um While, que, enquanto nosso gatilho for diferente de 0, não terminara)
+    puts "-----------------\n Code or saga progam\n -----------------\n"
+    puts "Escolha um numero para o final da nossa sequencia, quando o mesmo for divisivel por 3, o trocaremos por code!
+  \nQuando divisivel por 5, o trocaremos por Saga!. Se tivermos algum que seja divisivel tanto por 3 quanto por 5, ele sera nosso Code-Saga! \n\n "
+
+    puts "Digite o valor final da nossa sequencia."   # Obtendo valor desejado pelo ussuario
+    v = gets.chomp									# armazenando (limpo pelo chomp) a string em V
+    z = v.to_i										# convertendo V (string) e armazenando em Z (Int)
+    code_or_saga(z)									# chamando a função principal
+
+    puts"\nDeseja lançar outra sequencia? [1] - sim, [0] - não"   # Segunda e ultima interação com o ussuario.
+    gat = gets.chomp()
+    if gat == '1'
+      system('pause')
+      system('clear')
+    else
+      puts "Ate logo!"
+      system('pause')
+      system('clear')
+      gat == 0
+    end
+  end
+end
+
+gat = '1'
+  while gat != '0'
+  puts "-----------------\n Code or saga progam\n -----------------\n"
+  puts "Escolha um numero para o final da nossa sequencia, quando o mesmo for divisivel por 3, o trocaremos por code!
+  \nQuando divisivel por 5, o trocaremos por Saga!. Se tivermos algum que seja divisivel tanto por 3 quanto por 5, ele sera nosso Code-Saga! \n\n "
+
+  puts "Digite o valor final da nossa sequencia."
+  v = gets.chomp
+  z = v.to_i
+  code_or_saga(z)
+
+    puts"\nDeseja lançar outra sequencia? [1] - sim, [0] - não"
+    gat = gets.chomp()
+  if gat == '1'
+    system('pause')
+    system('clear')
+  else
+    puts "Ate logo!"
+    system('pause')
+    system('clear')
+    gat == 0
+    end
+  end
